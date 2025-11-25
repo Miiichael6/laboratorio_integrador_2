@@ -1,0 +1,4 @@
+from .productos_repository import ProductosRepository
+from .detalle_ventas_repository import DetalleVentasRepository
+from .clientes_repository import ClientesRepository
+from .ventas_repository import VentasRepository
