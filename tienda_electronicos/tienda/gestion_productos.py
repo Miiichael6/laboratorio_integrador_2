@@ -1,13 +1,8 @@
-from ..base_datos.repository import ProductosRepository, ClientesRepository
+from tienda_electronicos.base_datos.repository import ProductosRepository, ClientesRepository
 
 class TiendaGestionProductos:
-    def __init__(
-            self, 
-            productos_repo: ProductosRepository, 
-            clientes_repo: ClientesRepository
-        ):
-        self.productos_repository = productos_repo
-        self.clientes_repository = clientes_repo
+    productos_repository: ProductosRepository
+    clientes_repository: ClientesRepository
     
     def mostrar_catalogo(self):
         """Muestra todos los productos por categoría."""
@@ -18,7 +13,7 @@ class TiendaGestionProductos:
         productos = self.productos_repository.find_all()
 
         categorias = {}
-        for nombre, precio, stock, categoria in productos:
+        for (id, nombre, precio, stock, categoria) in productos:
             if categoria not in categorias:
                 categorias[categoria] = []
             categorias[categoria].append((nombre, precio, stock))
@@ -32,18 +27,21 @@ class TiendaGestionProductos:
 
     def buscar_producto(self, nombre):
         """Busca un producto por nombre."""
+        productos = self.productos_repository.find_all()
         nombre_lower = nombre.lower()
-        for item in self.catalogo:
-            if nombre_lower in item[0].lower():
-                return item
+        for (id, nom, precio, stock, categoria) in productos:
+            if nombre_lower in nom.lower():
+                return (id, nom, precio, stock, categoria)
         return None
 
     def actualizar_precio_producto(self, nombre, nuevo_precio):
         """Actualiza el precio de un producto."""
-        for i, (nom, precio, stock, categoria) in enumerate(self.catalogo):
+
+        productos = self.productos_repository.find_all()
+        for (id, nom, precio, stock, categoria) in productos:
             if nom.lower() == nombre.lower():
                 precio_anterior = precio
-                self.catalogo[i] = (nom, nuevo_precio, stock, categoria)
+                self.productos_repository.update(id, { "precio": nuevo_precio })
 
                 print(f"\n✅ Precio actualizado: {nom}")
                 print(f"   Precio anterior: S/{precio_anterior:.2f}")
@@ -59,7 +57,12 @@ class TiendaGestionProductos:
             print(f"❌ El producto '{nombre}' ya existe")
             return False
 
-        self.catalogo.append((nombre, precio, stock, categoria))
+        self.productos_repository.create({
+            "nombre": nombre,
+            "precio": precio,
+            "stock": stock,
+            "categoria": categoria
+        })
         print(f"\n✅ Producto agregado: {nombre}")
         print(f"   Precio: S/{precio:.2f}")
         print(f"   Stock: {stock}")

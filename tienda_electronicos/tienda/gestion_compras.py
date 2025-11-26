@@ -3,7 +3,7 @@
 # ========================================================================
 
 import datetime
-from ..base_datos.repository import ClientesRepository
+# from tienda_electronicos.base_datos.repository import ClientesRepository
 class TiendaGestionCompras: 
     def __init__(self):
         pass

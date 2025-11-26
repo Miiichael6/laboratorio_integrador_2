@@ -22,10 +22,10 @@ def menu_gestor_productos(elect):
                 producto = elect.buscar_producto(nombre)
                 if producto:
                     print(f"\n✓ Producto encontrado:")
-                    print(f"  Nombre: {producto[0]}")
-                    print(f"  Precio: S/{producto[1]:.2f}")
-                    print(f"  Stock: {producto[2]}")
-                    print(f"  Categoría: {producto[3]}")
+                    print(f"  Nombre: {producto[1]}")
+                    print(f"  Precio: S/{producto[2]:.2f}")
+                    print(f"  Stock: {producto[3]}")
+                    print(f"  Categoría: {producto[4]}")
                 else:
                     print(f"❌ Producto '{nombre}' no encontrado")
 

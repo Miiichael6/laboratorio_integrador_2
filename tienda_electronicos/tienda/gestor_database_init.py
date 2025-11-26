@@ -1,6 +1,6 @@
 import datetime
-from base_datos.database_gestor import DatabaseGestor
-from base_datos.repository import ProductosRepository, VentasRepository, ClientesRepository, DetalleVentasRepository
+from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
+from tienda_electronicos.base_datos.repository import ProductosRepository, VentasRepository, ClientesRepository, DetalleVentasRepository
 
 class TiendaGestorDatabase:
     def __init__(

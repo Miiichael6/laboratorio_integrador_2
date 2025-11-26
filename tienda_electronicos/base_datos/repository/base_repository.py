@@ -1,4 +1,4 @@
-from ..database_gestor import DatabaseGestor
+from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
 
 class BaseRepository:
     def __init__(self, gestor: DatabaseGestor, table: str, id_column="id"):

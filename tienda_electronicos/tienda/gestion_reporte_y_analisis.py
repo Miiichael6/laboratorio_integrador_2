@@ -1,5 +1,5 @@
-from ..base_datos.repository import DetalleVentasRepository, ProductosRepository, ClientesRepository
-from ..base_datos.database_gestor import DatabaseGestor
+from tienda_electronicos.base_datos.repository import DetalleVentasRepository, ProductosRepository, ClientesRepository
+from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
 class TiendaGestionReporteYAnalisis:
     def __init__(
             self, 

@@ -8,9 +8,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import warnings
-from menus import menu_gestor_productos, menu_responsable_compras, menu_administrador_ventas,menu_lider_integracion
-from tienda import ElectronicosGestion, TiendaGestorDatabase
-from dependencies.container import tienda
+from tienda_electronicos.menus import menu_gestor_productos, menu_responsable_compras, menu_administrador_ventas,menu_lider_integracion
+from tienda_electronicos.tienda import ElectronicosGestion
+from tienda_electronicos.dependencies.container import productos_repo, clientes_repo, ventas_repo, detalle_ventas_repo, database
 warnings.filterwarnings('ignore', category=DeprecationWarning)
 
 # ============================================================================
@@ -20,10 +20,16 @@ def main():
     """Función principal - Instancia global compartida entre roles."""
     global sistema_elect
 
-    sistema_elect = ElectronicosGestion(tienda)
+    sistema_elect = ElectronicosGestion(
+            db=database,
+            clientes_repo=clientes_repo,
+            detalle_ventas_repo=detalle_ventas_repo,
+            productos_repo=productos_repo,
+            ventas_repo=ventas_repo            
+        )
 
     while True:
-        print("\ SISTEMA DE GESTIÓN Electronicos")
+        print("SISTEMA DE GESTIÓN Electronicos")
         print("="*60)
         print("\n¿QUIÉN ERES?")
         print("="*60)
