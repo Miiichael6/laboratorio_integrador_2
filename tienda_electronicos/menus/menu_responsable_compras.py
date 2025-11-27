@@ -1,4 +1,6 @@
-def menu_responsable_compras(elect):
+from tienda_electronicos.tienda import ElectronicosGestion
+
+def menu_responsable_compras(elect: ElectronicosGestion):
     """Menú para el Responsable de Compras."""
     while True:
         print("\n" + "="*50)

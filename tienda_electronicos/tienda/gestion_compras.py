@@ -29,7 +29,9 @@ class TiendaGestionCompras(TiendaGestionProductos):
                 print(f"✓ Cantidad actualizada: {nombre_prod} x{nueva_cantidad}")
                 return True
 
+        # el carrito es algo que se guarda en memoria
         self.carrito.append((nombre_prod, precio, cantidad, categoria))
+
         print(f"✓ Agregado al carrito: {nombre_prod} x{cantidad}")
         return True
 

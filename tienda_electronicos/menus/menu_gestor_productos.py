@@ -1,4 +1,6 @@
-def menu_gestor_productos(elect):
+from tienda_electronicos.tienda import ElectronicosGestion
+
+def menu_gestor_productos(elect: ElectronicosGestion):
     """Menú para el Gestor de Productos."""
     while True:
         print("\n" + "="*50)

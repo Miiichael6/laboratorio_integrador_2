@@ -1,4 +1,5 @@
-def menu_graficos(elect):
+from tienda_electronicos.tienda import ElectronicosGestion
+def menu_graficos(elect: ElectronicosGestion):
     """Menú para ver historial de compras."""
     while True:
         print("\n" + "="*50)

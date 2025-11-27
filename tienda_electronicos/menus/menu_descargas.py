@@ -1,4 +1,5 @@
-def menu_descargas(elect):
+from tienda_electronicos.tienda import ElectronicosGestion
+def menu_descargas(elect: ElectronicosGestion):
     """Menú para descargar archivos."""
     while True:
         print("\n" + "="*50)

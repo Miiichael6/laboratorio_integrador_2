@@ -1,4 +1,5 @@
-def menu_administrador_ventas(elect):
+from tienda_electronicos.tienda import ElectronicosGestion
+def menu_administrador_ventas(elect: ElectronicosGestion):
     """Menú para el Administrador de Ventas."""
     while True:
         print("\n" + "="*50)

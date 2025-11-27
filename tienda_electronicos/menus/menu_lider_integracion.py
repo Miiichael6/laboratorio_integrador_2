@@ -1,6 +1,7 @@
+from tienda_electronicos.tienda import ElectronicosGestion
 from .menu_graficos import menu_graficos
 
-def menu_lider_integracion(elect):
+def menu_lider_integracion(elect: ElectronicosGestion):
     """Menú para el Líder de Integración - VE Y HACE TODO."""
     while True:
         print("\n" + "="*50)
