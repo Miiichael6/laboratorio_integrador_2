@@ -1,13 +1,10 @@
 # ========================================================================
 # GESTIÓN DE COMPRAS (RESPONSABLE DE COMPRAS)
 # ========================================================================
-
+from tienda_electronicos.tienda.gestion_productos import TiendaGestionProductos
 import datetime
-# from tienda_electronicos.base_datos.repository import ClientesRepository
-class TiendaGestionCompras: 
-    def __init__(self):
-        pass
 
+class TiendaGestionCompras(TiendaGestionProductos): 
     def agregar_al_carrito(self, nombre, cantidad):
         """Agrega un producto al carrito."""
         producto = self.buscar_producto(nombre)
