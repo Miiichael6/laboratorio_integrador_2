@@ -1,13 +1,17 @@
 from tienda_electronicos.tienda.gestor_database_init import TiendaGestorDatabase
 from tienda_electronicos.tienda.gestion_compras import TiendaGestionCompras
 from tienda_electronicos.tienda.gestion_productos import TiendaGestionProductos
+from tienda_electronicos.tienda.gestion_graficos_y_reportes import TiendaGestionGraficosYReportes
 from tienda_electronicos.base_datos.repository import ProductosRepository, ClientesRepository, VentasRepository, DetalleVentasRepository
 from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
 import matplotlib.pyplot as plt
 import os
 import warnings
 
-class ElectronicosGestion(TiendaGestionProductos, TiendaGestorDatabase):
+
+
+
+class ElectronicosGestion(TiendaGestionProductos, TiendaGestorDatabase, TiendaGestionGraficosYReportes):
     """Sistema de gestión para una tienda de Electrónicos con roles diferenciados."""
 
     def __init__(

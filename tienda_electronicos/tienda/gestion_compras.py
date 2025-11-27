@@ -5,6 +5,8 @@ from tienda_electronicos.tienda.gestion_productos import TiendaGestionProductos
 import datetime
 
 class TiendaGestionCompras(TiendaGestionProductos): 
+    carrito: list
+
     def agregar_al_carrito(self, nombre, cantidad):
         """Agrega un producto al carrito."""
         producto = self.buscar_producto(nombre)

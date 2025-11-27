@@ -1,17 +1,10 @@
 from tienda_electronicos.base_datos.repository import DetalleVentasRepository, ProductosRepository, ClientesRepository
 from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
 class TiendaGestionReporteYAnalisis:
-    def __init__(
-            self, 
-            detalle_ventas_repository: DetalleVentasRepository,
-            clientes_repository: ClientesRepository,
-            productos_repository: ProductosRepository,
-            db: DatabaseGestor
-        ):
-        self.detalle_ventas_repository = detalle_ventas_repository
-        self.clientes_repository = clientes_repository
-        self.productos_repository = productos_repository
-        self.db = db
+    detalle_ventas_repository: DetalleVentasRepository,
+    clientes_repository: ClientesRepository,
+    productos_repository: ProductosRepository,
+    db: DatabaseGestor
     
     def mostrar_historial(self):
         """Muestra el historial de ventas."""

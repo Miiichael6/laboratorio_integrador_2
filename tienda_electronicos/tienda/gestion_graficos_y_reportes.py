@@ -4,8 +4,6 @@
 import matplotlib.pyplot as plt
 
 class TiendaGestionGraficosYReportes:
-    def __init__(self):
-        pass
 
     def generar_grafico_ventas_diarias(self):
         """Genera gráfico de ventas por día."""
