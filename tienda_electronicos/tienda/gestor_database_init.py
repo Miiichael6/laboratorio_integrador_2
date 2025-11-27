@@ -3,19 +3,25 @@ from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
 from tienda_electronicos.base_datos.repository import ProductosRepository, VentasRepository, ClientesRepository, DetalleVentasRepository
 
 class TiendaGestorDatabase:
+    db: DatabaseGestor
+    productos_repository: ProductosRepository
+    clientes_repository: ClientesRepository
+    ventas_repository: VentasRepository
+    detalle_ventas_repository: DetalleVentasRepository
+    
     def __init__(
             self, 
-            db: DatabaseGestor, 
-            productos_repository: ProductosRepository,
-            clientes_repository: ClientesRepository,
-            ventas_repository: VentasRepository,
-            detalle_ventas_repository: DetalleVentasRepository,
+            # db: DatabaseGestor, 
+            # productos_repository: ProductosRepository,
+            # clientes_repository: ClientesRepository,
+            # ventas_repository: VentasRepository,
+            # detalle_ventas_repository: DetalleVentasRepository,
         ):
-        self.db = db
-        self.productos_repository = productos_repository
-        self.clientes_repository = clientes_repository
-        self.ventas_repository = ventas_repository
-        self.detalle_ventas_repository = detalle_ventas_repository
+        # self.db = db
+        # self.productos_repository = productos_repository
+        # self.clientes_repository = clientes_repository
+        # self.ventas_repository = ventas_repository
+        # self.detalle_ventas_repository = detalle_ventas_repository
 
         self.clientes = [
             {"id": 1, "nombre": "María González", "tipo": "regular"},
@@ -100,7 +106,6 @@ class TiendaGestorDatabase:
 
             self.insertar_datos_iniciales()
             print("✅ Base de datos inicializada\n")
-
         except Exception as e:
             print(f"❌ Error: {e}")
 

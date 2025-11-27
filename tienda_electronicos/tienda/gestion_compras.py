@@ -1,13 +1,17 @@
 # ========================================================================
 # GESTIÓN DE COMPRAS (RESPONSABLE DE COMPRAS)
 # ========================================================================
-from tienda_electronicos.tienda.gestion_productos import TiendaGestionProductos
+from typing import TYPE_CHECKING
 import datetime
 
-class TiendaGestionCompras(TiendaGestionProductos): 
-    carrito: list
+if TYPE_CHECKING:
+    from tienda_electronicos.tienda.tienda_electronicos_gestor import ElectronicosGestion
 
-    def agregar_al_carrito(self, nombre, cantidad):
+class TiendaGestionCompras: 
+    carrito: list
+    ventas: list
+
+    def agregar_al_carrito(self: 'ElectronicosGestion', nombre: str, cantidad: int) -> bool:
         """Agrega un producto al carrito."""
         producto = self.buscar_producto(nombre)
 
