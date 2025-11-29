@@ -2,16 +2,11 @@
 # GESTIÓN DE COMPRAS (RESPONSABLE DE COMPRAS)
 # ========================================================================
 from typing import TYPE_CHECKING
-import datetime
-
 if TYPE_CHECKING:
-    from tienda_electronicos.tienda.tienda_electronicos_gestor import ElectronicosGestion
+    from .tienda_electronicos_gestor import ElectronicosGestion
 
-class TiendaGestionCompras: 
-    carrito: list
-    ventas: list
-
-    def agregar_al_carrito(self: 'ElectronicosGestion', nombre: str, cantidad: int) -> bool:
+class TiendaGestionCompras:
+    def agregar_al_carrito(self: "ElectronicosGestion", nombre, cantidad):
         """Agrega un producto al carrito."""
         producto = self.buscar_producto(nombre)
 
@@ -41,7 +36,7 @@ class TiendaGestionCompras:
         print(f"✓ Agregado al carrito: {nombre_prod} x{cantidad}")
         return True
 
-    def mostrar_carrito(self):
+    def mostrar_carrito(self: "ElectronicosGestion"):
         """Muestra el contenido del carrito."""
         if not self.carrito:
             print("🛒 El carrito está vacío\n")
@@ -60,7 +55,7 @@ class TiendaGestionCompras:
         print("-" * 50)
         print(f"TOTAL: S/{total:.2f}\n")
 
-    def aplicar_descuento(self, total, tipo_cliente):
+    def aplicar_descuento(self: "ElectronicosGestion", total, tipo_cliente):
         """Aplica descuento según tipo de cliente."""
         descuentos = {"premium": 0.15, "regular": 0.05} # segun tipo de cliente
         porcentaje = descuentos.get(tipo_cliente, 0)
@@ -68,7 +63,7 @@ class TiendaGestionCompras:
         total_final = total - descuento_aplicado
         return total_final, porcentaje * 100
 
-    def finalizar_compra(self, cliente_id):
+    def finalizar_compra(self: "ElectronicosGestion", cliente_id):
         """Procesa la compra final."""
         if not self.carrito:
             print("❌ El carrito está vacío")
@@ -116,13 +111,13 @@ class TiendaGestionCompras:
         self.carrito.clear() # limpiamos el carro para el siguiente cliente
         return True
 
-    def registrar_venta(self, venta):
+    def registrar_venta(self: "ElectronicosGestion", venta: dict):
         """Registra una venta."""
         self.ventas.append(venta)
         self.insertar_venta_bd(venta)
         self.guardar_venta_archivo(venta)
 
-    def mostrar_ticket_venta(self, venta):
+    def mostrar_ticket_venta(self: "ElectronicosGestion", venta: dict):
         """Muestra el ticket de venta."""
         print("\n" + "="*60)
         print(" Electronicos HUELLITAS - TICKET DE VENTA")

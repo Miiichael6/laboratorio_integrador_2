@@ -1,65 +1,10 @@
 import datetime
-from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
-from tienda_electronicos.base_datos.repository import ProductosRepository, VentasRepository, ClientesRepository, DetalleVentasRepository
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .tienda_electronicos_gestor import ElectronicosGestion
 
 class TiendaGestorDatabase:
-    db: DatabaseGestor
-    productos_repository: ProductosRepository
-    clientes_repository: ClientesRepository
-    ventas_repository: VentasRepository
-    detalle_ventas_repository: DetalleVentasRepository
-    
-    def __init__(
-            self, 
-            # db: DatabaseGestor, 
-            # productos_repository: ProductosRepository,
-            # clientes_repository: ClientesRepository,
-            # ventas_repository: VentasRepository,
-            # detalle_ventas_repository: DetalleVentasRepository,
-        ):
-        # self.db = db
-        # self.productos_repository = productos_repository
-        # self.clientes_repository = clientes_repository
-        # self.ventas_repository = ventas_repository
-        # self.detalle_ventas_repository = detalle_ventas_repository
-
-        self.clientes = [
-            {"id": 1, "nombre": "María González", "tipo": "regular"},
-            {"id": 2, "nombre": "Carlos Ruiz", "tipo": "premium"},
-            {"id": 3, "nombre": "Ana Torres", "tipo": "regular"},
-            {"id": 4, "nombre": "José Martínez", "tipo": "regular"},
-            {"id": 5, "nombre": "Lucía Fernández", "tipo": "premium"},
-            {"id": 6, "nombre": "Pedro Sánchez", "tipo": "regular"},
-            {"id": 7, "nombre": "Valeria Campos", "tipo": "regular"},
-            {"id": 8, "nombre": "Diego Rivas", "tipo": "premium"},
-            {"id": 9, "nombre": "Soledad Castro", "tipo": "regular"},
-            {"id": 10, "nombre": "Javier Molina", "tipo": "regular"},
-            {"id": 11, "nombre": "Patricia León", "tipo": "premium"},
-            {"id": 12, "nombre": "Héctor Salazar", "tipo": "regular"},
-            {"id": 13, "nombre": "Daniela Paredes", "tipo": "regular"},
-            {"id": 14, "nombre": "Rodrigo Vera", "tipo": "premium"},
-            {"id": 15, "nombre": "Carmen Castillo", "tipo": "regular"},
-            {"id": 16, "nombre": "Luis Benavides", "tipo": "regular"},
-            {"id": 17, "nombre": "Natalia Bravo", "tipo": "premium"},
-            {"id": 18, "nombre": "Esteban Aguirre", "tipo": "regular"},
-            {"id": 19, "nombre": "Rocío Medina", "tipo": "regular"},
-            {"id": 20, "nombre": "Andrés Cáceres", "tipo": "premium"}
-        ]
-
-        self.catalogo = [
-            ("Laptop Básica 14", 1500.0, 25, "Computadoras"),
-            ("Mouse Inalámbrico", 45.0, 80, "Accesorios"),
-            ("Monitor 24 FHD", 520.0, 40, "Pantallas"),
-            ("Teclado Mecánico RGB", 260.0, 35, "Accesorios"),
-            ("Audífonos Bluetooth", 180.0, 50, "Audio"),
-            ("Router WiFi 6", 310.0, 30, "Redes"),
-            ("SSD 1TB NVMe", 420.0, 45, "Almacenamiento"),
-            ("Impresora Multifuncional", 680.0, 20, "Periféricos"),
-            ("Cargador Rápido 30W", 70.0, 60, "Accesorios"),
-            ("Webcam Full HD", 110.0, 25, "Periféricos")
-        ]
-    
-    def inicializar_base_datos(self):
+    def inicializar_base_datos(self: "ElectronicosGestion"):
         """Crea las tablas en SQLite."""
         try:
             self.db.execute('''
@@ -109,7 +54,7 @@ class TiendaGestorDatabase:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def insertar_datos_iniciales(self):
+    def insertar_datos_iniciales(self: "ElectronicosGestion"):
         """Inserta datos de prueba."""
         # productos = self.productos_repository.find_all()
         # clientes = self.clientes_repository.find_all()
@@ -132,7 +77,7 @@ class TiendaGestorDatabase:
                     "tipo": cliente["tipo"]
                 })
 
-    def insertar_venta_bd(self, venta):
+    def insertar_venta_bd(self: "ElectronicosGestion", venta: dict):
         """Inserta una venta en la BD."""
         try:
 
@@ -160,7 +105,7 @@ class TiendaGestorDatabase:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def guardar_venta_archivo(self, venta):
+    def guardar_venta_archivo(self: "ElectronicosGestion", venta: dict):
         """Guarda venta en archivo txt."""
         try:
             fecha_hoy = datetime.datetime.now().strftime('%Y%m%d')

@@ -2,10 +2,13 @@
 # GRÁFICOS Y REPORTES (LÍDER DE INTEGRACIÓN)
 # ========================================================================
 import matplotlib.pyplot as plt
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .tienda_electronicos_gestor import ElectronicosGestion
 
 class TiendaGestionGraficosYReportes:
 
-    def generar_grafico_ventas_diarias(self):
+    def generar_grafico_ventas_diarias(self: "ElectronicosGestion"):
         """Genera gráfico de ventas por día."""
         if not self.ventas:
             print("❌ No hay ventas para graficar")
@@ -30,7 +33,7 @@ class TiendaGestionGraficosYReportes:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def generar_grafico_productos_vendidos(self):
+    def generar_grafico_productos_vendidos(self: "ElectronicosGestion"):
         """Genera gráfico de productos más vendidos."""
         try:
             conn = sqlite3.connect('base_datos/negocio.db')
@@ -66,7 +69,7 @@ class TiendaGestionGraficosYReportes:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def generar_grafico_categorias(self):
+    def generar_grafico_categorias(self: "ElectronicosGestion"):
         """Genera gráfico de ventas por categoría."""
         try:
             conn = sqlite3.connect('base_datos/negocio.db')
@@ -102,7 +105,7 @@ class TiendaGestionGraficosYReportes:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def generar_grafico_clientes(self):
+    def generar_grafico_clientes(self: "ElectronicosGestion"):
         """Genera gráfico de clientes más frecuentes."""
         try:
             conn = sqlite3.connect('base_datos/negocio.db')
@@ -139,7 +142,7 @@ class TiendaGestionGraficosYReportes:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def generar_grafico_precios(self):
+    def generar_grafico_precios(self: "ElectronicosGestion"):
         """Genera histograma de precios."""
         try:
             precios = [precio for _, precio, _, _ in self.catalogo]

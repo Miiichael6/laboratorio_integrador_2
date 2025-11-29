@@ -1,12 +1,9 @@
-from tienda_electronicos.base_datos.repository import DetalleVentasRepository, ProductosRepository, ClientesRepository
-from tienda_electronicos.base_datos.database_gestor import DatabaseGestor
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .tienda_electronicos_gestor import ElectronicosGestion
 class TiendaGestionReporteYAnalisis:
-    detalle_ventas_repository: DetalleVentasRepository
-    clientes_repository: ClientesRepository
-    productos_repository: ProductosRepository
-    db: DatabaseGestor
     
-    def mostrar_historial(self):
+    def mostrar_historial(self: "ElectronicosGestion"):
         """Muestra el historial de ventas."""
         if not self.ventas:
             print("📊 No hay ventas registradas\n")
@@ -25,7 +22,7 @@ class TiendaGestionReporteYAnalisis:
         print("-" * 80)
         print(f"Total de ventas: {len(self.ventas)} | Monto total: S/{total_ventas:.2f}\n")
 
-    def productos_mas_vendidos(self, limite=5):
+    def productos_mas_vendidos(self: "ElectronicosGestion", limite=5):
         """Muestra los productos más vendidos."""
         try:
 
@@ -52,7 +49,7 @@ class TiendaGestionReporteYAnalisis:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def ventas_por_cliente(self):
+    def ventas_por_cliente(self: "ElectronicosGestion"):
         """Muestra ventas agrupadas por cliente."""
         try:
             resultados = self.db.select('''
@@ -79,7 +76,7 @@ class TiendaGestionReporteYAnalisis:
         except Exception as e:
             print(f"❌ Error: {e}")
 
-    def productos_stock_bajo(self, limite_stock=10):
+    def productos_stock_bajo(self: "ElectronicosGestion", limite_stock=10):
         """Muestra productos con stock bajo."""
         try:
 

@@ -1,10 +1,9 @@
-from tienda_electronicos.base_datos.repository import ProductosRepository, ClientesRepository
-
-class TiendaGestionProductos:
-    productos_repository: ProductosRepository
-    clientes_repository: ClientesRepository
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from .tienda_electronicos_gestor import ElectronicosGestion
     
-    def mostrar_catalogo(self):
+class TiendaGestionProductos:
+    def mostrar_catalogo(self: "ElectronicosGestion"):
         """Muestra todos los productos por categoría."""
         print("\n" + "="*60)
         print("CATÁLOGO DE SERVICIOS Y PRODUCTOS")
@@ -25,7 +24,7 @@ class TiendaGestionProductos:
                 estado = "✓ Disponible" if stock > 0 else "✗ Agotado"
                 print(f"• {nombre:<25} S/{precio:>6.2f} | Stock: {stock:>3} {estado}")
 
-    def buscar_producto(self, nombre):
+    def buscar_producto(self: "ElectronicosGestion", nombre):
         """Busca un producto por nombre."""
         productos = self.productos_repository.find_all()
         nombre_lower = nombre.lower()
@@ -34,7 +33,7 @@ class TiendaGestionProductos:
                 return (id, nom, precio, stock, categoria)
         return None
 
-    def actualizar_precio_producto(self, nombre, nuevo_precio):
+    def actualizar_precio_producto(self: "ElectronicosGestion", nombre, nuevo_precio):
         """Actualiza el precio de un producto."""
 
         productos = self.productos_repository.find_all()
@@ -51,7 +50,7 @@ class TiendaGestionProductos:
         print(f"❌ Producto '{nombre}' no encontrado")
         return False
 
-    def agregar_nuevo_producto(self, nombre, precio, stock, categoria):
+    def agregar_nuevo_producto(self: "ElectronicosGestion", nombre, precio, stock, categoria):
         """Agrega un nuevo producto al catálogo."""
         if self.buscar_producto(nombre):
             print(f"❌ El producto '{nombre}' ya existe")
@@ -69,7 +68,7 @@ class TiendaGestionProductos:
         print(f"   Categoría: {categoria}")
         return True
 
-    def agregar_cliente(self, nombre, tipo):
+    def agregar_cliente(self: "ElectronicosGestion", nombre, tipo):
         """Agrega un nuevo cliente."""
         # Normalizar nombre (capitalizar correctamente)
         nombre = nombre.strip().title()
