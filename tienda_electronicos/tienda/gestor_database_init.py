@@ -90,7 +90,7 @@ class TiendaGestorDatabase:
                 "total": venta["total"]
             })
 
-            venta_id = venta_creada.lastrowid
+            venta_id = venta_creada[0]
 
             for nombre, precio, cantidad, _ in venta["items"]:
                 subtotal_item = precio * cantidad

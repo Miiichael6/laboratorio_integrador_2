@@ -1,0 +1,36 @@
+VENTA - 29/11/2025 14:43:03
+Cliente: María González (ID: 1)
+Items:
+Almacenamiento - SSD 2TB x2 @ S/100.0 = S/200.00
+Subtotal: S/200.00
+Descuento: 5.0%
+Total: S/190.00
+--------------------------------------------------
+
+VENTA - 29/11/2025 14:46:12
+Cliente: Carlos Ruiz (ID: 2)
+Items:
+Periféricos - Webcam Full HD x2 @ S/110.0 = S/220.00
+Subtotal: S/220.00
+Descuento: 15.0%
+Total: S/187.00
+--------------------------------------------------
+
+VENTA - 29/11/2025 14:47:17
+Cliente: Ana Torres (ID: 3)
+Items:
+Redes - Router WiFi 6 x2 @ S/100.0 = S/200.00
+Subtotal: S/200.00
+Descuento: 5.0%
+Total: S/190.00
+--------------------------------------------------
+
+VENTA - 29/11/2025 14:51:29
+Cliente: Diego Rivas (ID: 8)
+Items:
+Redes - Router WiFi 6 x5 @ S/100.0 = S/500.00
+Subtotal: S/500.00
+Descuento: 15.0%
+Total: S/425.00
+--------------------------------------------------
+

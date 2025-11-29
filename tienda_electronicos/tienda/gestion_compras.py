@@ -1,6 +1,7 @@
 # ========================================================================
 # GESTIÓN DE COMPRAS (RESPONSABLE DE COMPRAS)
 # ========================================================================
+import datetime
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
@@ -14,7 +15,7 @@ class TiendaGestionCompras:
             print(f"❌ Producto '{nombre}' no encontrado")
             return False
 
-        nombre_prod, precio, stock, categoria = producto
+        id, nombre_prod, precio, stock, categoria = producto
 
         if stock < cantidad:
             print(f"❌ Stock insuficiente. Disponible: {stock}, Solicitado: {cantidad}")
