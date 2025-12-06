@@ -1,3 +1,5 @@
+
+from datetime import datetime
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
@@ -5,7 +7,10 @@ class TiendaGestionReporteYAnalisis:
     
     def mostrar_historial(self: "ElectronicosGestion"):
         """Muestra el historial de ventas."""
-        if not self.ventas:
+        ventas = self.ventas_repository.find_all()
+        
+        # self.ventas_repository
+        if not ventas:
             print("📊 No hay ventas registradas\n")
             return
 
@@ -14,13 +19,18 @@ class TiendaGestionReporteYAnalisis:
         print("="*80)
 
         total_ventas = 0
-        for i, venta in enumerate(self.ventas, 1):
-            fecha_str = venta["fecha"].strftime('%d/%m/%Y %H:%M')
-            print(f"{i:>3}. {fecha_str} | {venta['cliente']:<20} | S/{venta['total']:>8.2f}")
-            total_ventas += venta['total']
+        for i, venta in enumerate(ventas, 1):
+                        
+            id,fecha,cli_id,cli_nom,subtotal,desct,total = venta
+            
+            fecha_str = datetime.strptime(fecha, "%Y-%m-%d %H:%M:%S.%f").strftime("%Y-%m-%d %H:%M")
+            
+            
+            print(f"{i:>3}. {fecha_str} | {cli_nom:<20} | S/{total:>8.2f}")
+            total_ventas += total
 
         print("-" * 80)
-        print(f"Total de ventas: {len(self.ventas)} | Monto total: S/{total_ventas:.2f}\n")
+        print(f"Total de ventas: {len(ventas)} | Monto total: S/{total_ventas:.2f}\n")
 
     def productos_mas_vendidos(self: "ElectronicosGestion", limite=5):
         """Muestra los productos más vendidos."""
