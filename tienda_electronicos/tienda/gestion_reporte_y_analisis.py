@@ -19,18 +19,19 @@ class TiendaGestionReporteYAnalisis:
         print("="*80)
 
         total_ventas = 0
-        for i, venta in enumerate(ventas, 1):
+        for venta in ventas:
+            id = venta["id"]
+            fecha = venta["fecha"]
+            total = venta["total"]
+            cli_nom = venta["cliente_nombre"]
                         
-            id,fecha,cli_id,cli_nom,subtotal,desct,total = venta
-            
             fecha_str = datetime.strptime(fecha, "%Y-%m-%d %H:%M:%S.%f").strftime("%Y-%m-%d %H:%M")
             
-            
-            print(f"{i:>3}. {fecha_str} | {cli_nom:<20} | S/{total:>8.2f}")
+            print(f"{id:>3}. {fecha_str} | {cli_nom:<23} | S/{total:>8.2f}")
             total_ventas += total
 
         print("-" * 80)
-        print(f"Total de ventas: {len(ventas)} | Monto total: S/{total_ventas:.2f}\n")
+        print(f"> Total de ventas: {len(ventas):<4} | Monto total: S/ {total_ventas:.2f}\n")
 
     def productos_mas_vendidos(self: "ElectronicosGestion", limite=5):
         """Muestra los productos más vendidos."""
@@ -53,8 +54,8 @@ class TiendaGestionReporteYAnalisis:
             print(f"{'Producto':<25} {'Cantidad':<10} {'Ingresos'}")
             print("-"*70)
 
-            for producto, cantidad, ingresos in resultados:
-                print(f"{producto:<25} {cantidad:<10} S/{ingresos:<10.2f}")
+            for res in resultados:
+                print(f"{res["producto_nombre"]:<25} {res["total_vendido"]:<10} S/{res["ingresos_total"]:>10.2f}")
 
         except Exception as e:
             print(f"❌ Error productos_mas_vendidos: {e}")
@@ -79,7 +80,11 @@ class TiendaGestionReporteYAnalisis:
             print(f"{'Cliente':<20} {'Tipo':<10} {'Compras':<8} {'Total'}")
             print("-"*75)
 
-            for nombre, tipo, compras, total in resultados:
+            for res in resultados:
+                nombre = res["nombre"]
+                tipo = res["tipo"]
+                compras = res["total_compras"]
+                total = res["monto_total"]
                 total_str = f"S/{total:.2f}" if total else "S/0.00"
                 print(f"{nombre:<20} {tipo:<10} {compras or 0:<8} {total_str}")
 
@@ -102,7 +107,11 @@ class TiendaGestionReporteYAnalisis:
             print(f"{'Producto':<25} {'Stock':<8} {'Categoría':<15} {'Precio'}")
             print("-"*60)
 
-            for nombre, stock, categoria, precio in resultados:
+            for res in resultados:
+                nombre = res["nombre"]
+                stock = res["stock"]
+                categoria = res["categoria"]
+                precio = res["precio"]
                 alerta = "🔴" if stock == 0 else "🟡"
                 print(f"{alerta} {nombre:<23} {stock:<8} {categoria:<15} S/{precio:.2f}")
 
