@@ -47,7 +47,7 @@ class TiendaGestionReporteYAnalisis:
                 print(f"{producto:<25} {cantidad:<10} S/{ingresos:<10.2f}")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error productos_mas_vendidos: {e}")
 
     def ventas_por_cliente(self: "ElectronicosGestion"):
         """Muestra ventas agrupadas por cliente."""
@@ -74,7 +74,7 @@ class TiendaGestionReporteYAnalisis:
                 print(f"{nombre:<20} {tipo:<10} {compras or 0:<8} {total_str}")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error ventas_por_cliente: {e}")
 
     def productos_stock_bajo(self: "ElectronicosGestion", limite_stock=10):
         """Muestra productos con stock bajo."""
@@ -97,4 +97,4 @@ class TiendaGestionReporteYAnalisis:
                 print(f"{alerta} {nombre:<23} {stock:<8} {categoria:<15} S/{precio:.2f}")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error productos_stock_bajo: {e}")

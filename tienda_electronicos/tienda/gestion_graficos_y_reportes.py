@@ -9,8 +9,9 @@ if TYPE_CHECKING:
 class TiendaGestionGraficosYReportes:
 
     def generar_grafico_ventas_diarias(self: "ElectronicosGestion"):
+        ventas = self.ventas_repository.find_all()
         """Genera gráfico de ventas por día."""
-        if not self.ventas:
+        if not ventas:
             print("❌ No hay ventas para graficar")
             return
 
@@ -31,7 +32,7 @@ class TiendaGestionGraficosYReportes:
             print("✓ Gráfico de ventas generado\n")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error generar_grafico_ventas_diarias: {e}")
 
     def generar_grafico_productos_vendidos(self: "ElectronicosGestion"):
         """Genera gráfico de productos más vendidos."""
@@ -40,11 +41,11 @@ class TiendaGestionGraficosYReportes:
             cursor = conn.cursor()
 
             cursor.execute('''
-            SELECT producto_nombre, SUM(cantidad) as total
-            FROM detalle_ventas
-            GROUP BY producto_nombre
-            ORDER BY total DESC
-            LIMIT 10
+                SELECT producto_nombre, SUM(cantidad) as total
+                FROM detalle_ventas
+                GROUP BY producto_nombre
+                ORDER BY total DESC
+                LIMIT 10
             ''')
 
             resultados = cursor.fetchall()
@@ -67,7 +68,7 @@ class TiendaGestionGraficosYReportes:
             print("✓ Gráfico de productos generado\n")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error generar_grafico_productos_vendidos: {e}")
 
     def generar_grafico_categorias(self: "ElectronicosGestion"):
         """Genera gráfico de ventas por categoría."""
@@ -103,7 +104,7 @@ class TiendaGestionGraficosYReportes:
             print("✓ Gráfico de categorías generado\n")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error generar_grafico_categorias: {e}")
 
     def generar_grafico_clientes(self: "ElectronicosGestion"):
         """Genera gráfico de clientes más frecuentes."""
@@ -140,7 +141,7 @@ class TiendaGestionGraficosYReportes:
             print("✓ Gráfico de clientes generado\n")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error generar_grafico_clientes: {e}")
 
     def generar_grafico_precios(self: "ElectronicosGestion"):
         """Genera histograma de precios."""
@@ -158,4 +159,4 @@ class TiendaGestionGraficosYReportes:
             print("✓ Gráfico de precios generado\n")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error generar_grafico_precios: {e}")

@@ -3,13 +3,13 @@ from pathlib import Path
 
 class DatabaseGestor:
     def __init__(self, db_path="tienda_electronicos/base_datos/db/negocio.db"):
-        self.db_path = Path(db_path)             # ruta del archivo
-        self.db_path.parent.mkdir(parents=True, exist_ok=True)  # crea carpetas
-        self.connect()  # opcional: solo para probar que se puede conectar
+        self.db_path = Path(db_path)
+        self.db_path.parent.mkdir(parents=True, exist_ok=True)
 
     def connect(self):
-        return sqlite3.connect(self.db_path)
-
+        conn = sqlite3.connect(self.db_path)
+        conn.row_factory = sqlite3.Row  # <- la clave para obtener dicts
+        return conn
 
     def execute(self, query, params=()):
         conn = self.connect()
@@ -26,17 +26,18 @@ class DatabaseGestor:
         cur = conn.cursor()
         try:
             cur.execute(query, params)
-            return cur.fetchall()
+            rows = cur.fetchall()
+            return [dict(row) for row in rows]
         finally:
             conn.close()
 
     def select_one(self, query, params=()):
-        """Ejecuta SELECT y devuelve una sola fila"""
         conn = self.connect()
         cur = conn.cursor()
         try:
             cur.execute(query, params)
-            return cur.fetchone()[0]
+            row = cur.fetchone()
+            return dict(row) if row else None
         finally:
             conn.close()
 
@@ -51,10 +52,10 @@ class DatabaseGestor:
         try:
             cur.execute(query, values)
             conn.commit()
-            last_id = cur.lastrowid  # obtiene el ID del registro insertado
-            # devuelve la fila completa recién creada
+            last_id = cur.lastrowid
             cur.execute(f"SELECT * FROM {table} WHERE id = ?", (last_id,))
-            return cur.fetchone()
+            row = cur.fetchone()
+            return dict(row)  # <- devolver dict
         finally:
             conn.close()
 
@@ -64,12 +65,12 @@ class DatabaseGestor:
 
     def find_by_id(self, table, id_value, id_column="id"):
         query = f"SELECT * FROM {table} WHERE {id_column} = ?"
-        return self.select(query, (id_value,))
+        rows = self.select(query, (id_value,))
+        return rows[0] if rows else None
 
     def update(self, table, id_value, data: dict, id_column="id"):
         set_clause = ", ".join([f"{col} = ?" for col in data.keys()])
         values = tuple(data.values()) + (id_value,)
-
         query = f"UPDATE {table} SET {set_clause} WHERE {id_column} = ?"
         self.execute(query, values)
 
