@@ -1,3 +1,4 @@
+from tienda_electronicos.tienda.gestion_descargas import TiendaGestionDescargas
 from tienda_electronicos.tienda.gestor_database_init import TiendaGestorDatabase
 from tienda_electronicos.tienda.gestion_compras import TiendaGestionCompras
 from tienda_electronicos.tienda.gestion_productos import TiendaGestionProductos
@@ -13,6 +14,7 @@ class ElectronicosGestion(
         TiendaGestionReporteYAnalisis,
         TiendaGestionCompras,
         TiendaGestorDatabase,
+        TiendaGestionDescargas
     ):
     """Sistema de gestión para una tienda de Electrónicos con roles diferenciados."""
 
