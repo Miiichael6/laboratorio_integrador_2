@@ -1,4 +1,3 @@
-from IPython.core.hooks import clipboard_get
 import datetime
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
