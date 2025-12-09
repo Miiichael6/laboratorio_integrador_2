@@ -85,4 +85,4 @@ class ElectronicosGestion(
         carpetas = ['datos', 'base_datos', 'reportes']
         for carpeta in carpetas:
             os.makedirs(f"tienda_electronicos/{carpeta}", exist_ok=True)
-        print("✅ Carpetas creadas correctamente\n")
+        print("✅ Carpetas creadas correctamente")
