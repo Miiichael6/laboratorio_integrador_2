@@ -8,7 +8,7 @@ class TiendaGestionReporteYAnalisis:
     def mostrar_historial(self: "ElectronicosGestion"):
         """Muestra el historial de ventas."""
         ventas = self.ventas_repository.find_all()
-        
+
         # self.ventas_repository
         if not ventas:
             print("📊 No hay ventas registradas\n")
