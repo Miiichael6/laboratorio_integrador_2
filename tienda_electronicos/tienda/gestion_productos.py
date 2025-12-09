@@ -12,7 +12,7 @@ class TiendaGestionProductos:
 
         productos = self.productos_repository.find_all()
 
-        categorias: dict[str, str] = {}
+        categorias = {}
         for producto in productos:
             if producto['categoria'] not in categorias:
                 categorias[producto['categoria']] = []
