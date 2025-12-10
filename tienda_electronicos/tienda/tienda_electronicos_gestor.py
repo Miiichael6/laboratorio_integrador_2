@@ -71,7 +71,6 @@ class ElectronicosGestion(
             ("Webcam Full HD", 110.0, 25, "Periféricos")
         ]
     
-        
         # Carrito y ventas
         self.carrito = []
         self.ventas = []
