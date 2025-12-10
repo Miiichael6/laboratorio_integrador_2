@@ -48,7 +48,6 @@ class TiendaGestorDatabase:
                 );
             ''')
 
-
             self.insertar_datos_iniciales()
             print("✅ Base de datos inicializada\n")
         except Exception as e:

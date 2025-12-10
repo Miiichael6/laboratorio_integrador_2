@@ -7,6 +7,29 @@ if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
 
 class TiendaGestionCompras:
+
+    def opcion_agregar_al_carrito(self: "ElectronicosGestion"):
+        nombre = input("Nombre del producto: ").strip()
+        try:
+            cantidad = int(input("Cantidad: ").strip())
+            if cantidad > 0:
+                self.agregar_al_carrito(nombre, cantidad)
+            else:
+                print("❌ Cantidad debe ser mayor a 0")
+        except ValueError:
+            print("❌ Cantidad inválida")
+
+    def opcion_finalizar_compra(self: "ElectronicosGestion"): 
+        print("\nClientes disponibles:")
+        clientes = self.clientes_repository.find_all()
+        for cliente in clientes:
+            print(f"  ID: {cliente['id']} - {cliente['nombre']} ({cliente['tipo']})")
+        try:
+            cliente_id = int(input("ID del cliente: ").strip())
+            self.finalizar_compra(cliente_id)
+        except ValueError:
+            print("❌ ID inválido")
+
     def agregar_al_carrito(self: "ElectronicosGestion", nombre, cantidad):
         """Agrega un producto al carrito."""
         producto = self.buscar_producto(nombre)

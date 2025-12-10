@@ -3,6 +3,7 @@
 # ========================================================================
 import matplotlib.pyplot as plt
 from typing import TYPE_CHECKING
+from datetime import datetime
 if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
 
@@ -10,26 +11,32 @@ class TiendaGestionGraficosYReportes:
 
     def generar_grafico_ventas_diarias(self: "ElectronicosGestion"):
         ventas = self.ventas_repository.find_all()
-        """Genera gráfico de ventas por día."""
         if not ventas:
             print("❌ No hay ventas para graficar")
             return
 
         try:
-            fechas = [v['fecha'].date() for v in ventas]
+            fechas = [
+                datetime.fromisoformat(v['fecha']).date()
+                for v in ventas
+            ]
             totales = [v['total'] for v in ventas]
 
             plt.figure(figsize=(10, 6))
-            plt.plot(fechas, totales, marker='o', color='blue', linewidth=2)
+            plt.plot(fechas, totales, marker='o', linewidth=2)
             plt.title('Ventas Diarias - Electronicos', fontsize=14, fontweight='bold')
             plt.xlabel('Fecha')
             plt.ylabel('Total (S/)')
             plt.xticks(rotation=45)
             plt.grid(True, alpha=0.3)
             plt.tight_layout()
-            plt.savefig('reportes/ventas_diarias.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/ventas_diarias.png')
             plt.close()
-            print("✓ Gráfico de ventas generado\n")
+
+            print("✓ Gráfico de ventas generado y mostrado\n")
 
         except Exception as e:
             print(f"❌ Error generar_grafico_ventas_diarias: {e}")
@@ -57,7 +64,10 @@ class TiendaGestionGraficosYReportes:
             plt.title('Productos Más Vendidos', fontsize=14, fontweight='bold')
             plt.xlabel('Cantidad Vendida')
             plt.tight_layout()
-            plt.savefig('reportes/productos_vendidos.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/productos_vendidos.png')
             plt.close()
             print("✓ Gráfico de productos generado\n")
 
@@ -87,7 +97,10 @@ class TiendaGestionGraficosYReportes:
             plt.pie(ingresos, labels=categorias, autopct='%1.1f%%', startangle=90)
             plt.title('Ingresos por Categoría', fontsize=14, fontweight='bold')
             plt.tight_layout()
-            plt.savefig('reportes/categorias.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/categorias.png')
             plt.close()
             print("✓ Gráfico de categorías generado\n")
 
@@ -118,6 +131,9 @@ class TiendaGestionGraficosYReportes:
             plt.ylabel('Número de Compras')
             plt.xticks(rotation=45)
             plt.tight_layout()
+
+            plt.show()
+
             plt.savefig('tienda_electronicos/reportes/clientes.png')
             plt.close()
             print("✓ Gráfico de clientes generado\n")
@@ -137,7 +153,10 @@ class TiendaGestionGraficosYReportes:
             plt.xlabel('Precio (S/)')
             plt.ylabel('Cantidad de Productos')
             plt.tight_layout()
-            plt.savefig('reportes/precios.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/precios.png')
             plt.close()
             print("✓ Gráfico de precios generado\n")
 

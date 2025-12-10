@@ -4,6 +4,68 @@ if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
     
 class TiendaGestionProductos:
+    # REGION DE OPCIONES
+    def opcion_buscar_producto(self: "ElectronicosGestion"): 
+        nombre = input("Nombre del producto a buscar: ").strip()
+        producto = self.buscar_producto(nombre)
+        if producto:
+            print(f"\n✓ Producto encontrado:")
+            print(f"  Nombre: {producto['nombre']}")
+            print(f"  Precio: S/{producto['precio']:.2f}")
+            print(f"  Stock: {producto['stock']}")
+            print(f"  Categoría: {producto['categoria']}")
+        else:
+            print(f"❌ Producto '{nombre}' no encontrado")
+    
+    def opcion_actualizar_precio_producto(self: "ElectronicosGestion"):
+        print("\n" + "="*50)
+        print("💰 ACTUALIZAR PRECIO")
+        print("="*50)
+        self.mostrar_catalogo()
+        nombre = input("\nNombre del producto: ").strip()
+        try:
+            nuevo_precio = float(input("Nuevo precio (S/): "))
+            if nuevo_precio > 0:
+                self.actualizar_precio_producto(nombre, nuevo_precio)
+            else:
+                print("❌ El precio debe ser mayor a 0")
+        except ValueError:
+            print("❌ Precio inválido")
+
+    def opcion_agregar_nuevo_producto(self: "ElectronicosGestion"):
+        print("\n" + "="*50)
+        print("➕ AGREGAR NUEVO PRODUCTO")
+        print("="*50)
+        nombre = input("Nombre del producto: ").strip()
+        try:
+            precio = float(input("Precio (S/): "))
+            stock = int(input("Stock inicial: "))
+            categoria = input("Categoría: ").strip()
+            if precio > 0 and stock >= 0:
+                self.agregar_nuevo_producto(nombre, precio, stock, categoria)
+            else:
+                print("❌ Datos inválidos")
+        except ValueError:
+            print("❌ Datos inválidos")
+    
+    def opcion_agregar_mas_stock_producto(self: "ElectronicosGestion"):
+        print("\n" + "="*50)
+        print("➕ AGREGAR STOCK A UN PRODUCTO")
+        print("="*50)
+        self.mostrar_catalogo()
+        try:
+            nombre = input("Nombre del producto: ").strip()
+            stock = int(input("Stock a agregar: "))
+
+            if stock >= 1:
+                self.agregar_stock_producto(nombre, stock)
+            else:
+                print("❌ Stock inválido")
+        except ValueError:
+            print("❌ Datos inválidos")
+
+
+    # REGION DE FUNCIONES VITALES
     def mostrar_catalogo(self: "ElectronicosGestion"):
         """Muestra todos los productos por categoría."""
         print("\n" + "="*60)
@@ -15,8 +77,8 @@ class TiendaGestionProductos:
         categorias = {}
         for producto in productos:
             if producto['categoria'] not in categorias:
-                categorias[producto['categoria']] = []
-            categorias[producto['categoria']].append((producto['nombre'], producto['precio'], producto['stock']))
+                categorias[producto['categoria'].upper()] = []
+            categorias[producto['categoria'].upper()].append((producto['nombre'], producto['precio'], producto['stock']))
 
         for categoria, items in categorias.items():
             print(f"\n📋 {categoria.upper()}")
@@ -25,6 +87,7 @@ class TiendaGestionProductos:
                 estado = "✓ Disponible" if stock > 0 else "✗ Agotado"
                 print(f"• {nombre:<25} S/{precio:>6.2f} | Stock: {stock:>3} {estado}")
         print(f"\n")
+        
 
     def buscar_producto(self: "ElectronicosGestion", nombre: str) -> dict:
         """Busca un producto por nombre."""

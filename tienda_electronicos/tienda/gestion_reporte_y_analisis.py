@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
 class TiendaGestionReporteYAnalisis:
-    
     def mostrar_historial(self: "ElectronicosGestion"):
         """Muestra el historial de ventas."""
         ventas = self.ventas_repository.find_all()
