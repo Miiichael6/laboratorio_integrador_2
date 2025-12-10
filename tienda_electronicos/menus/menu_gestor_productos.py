@@ -4,7 +4,7 @@ def menu_gestor_productos(elect: ElectronicosGestion):
     """Menú para el Gestor de Productos."""
     while True:
         print("\n" + "="*50)
-        print("🛍️ GESTOR DE PRODUCTOS")
+        print("🛍️  GESTOR DE PRODUCTOS")
         print("="*50)
         print("1. Mostrar Catálogo")
         print("2. Buscar Producto")
