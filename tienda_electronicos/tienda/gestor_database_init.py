@@ -52,7 +52,7 @@ class TiendaGestorDatabase:
             self.insertar_datos_iniciales()
             print("✅ Base de datos inicializada\n")
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error inicializar_base_datos: {e}")
 
     def insertar_datos_iniciales(self: "ElectronicosGestion"):
         """Inserta datos de prueba."""
@@ -90,20 +90,20 @@ class TiendaGestorDatabase:
                 "total": venta["total"]
             })
 
-            venta_id = venta_creada[0]
-
-            for nombre, precio, cantidad, _ in venta["items"]:
-                subtotal_item = precio * cantidad
+            venta_id = venta_creada["id"]
+            
+            for item in venta["items"]:
+                subtotal_item = item["precio"] * item["cantidad"]
 
                 self.detalle_ventas_repository.create({
                     "venta_id": venta_id,
-                    "producto_nombre": nombre,
-                    "precio_unitario": precio,
-                    "cantidad": cantidad,
+                    "producto_nombre": item["nombre"],
+                    "precio_unitario": item["precio"],
+                    "cantidad": item["cantidad"],
                     "subtotal": subtotal_item
                 })
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error insertar_venta_bd: {e}")
 
     def guardar_venta_archivo(self: "ElectronicosGestion", venta: dict):
         """Guarda venta en archivo txt."""
@@ -116,7 +116,11 @@ class TiendaGestorDatabase:
                 f.write(f"Cliente: {venta['cliente']} (ID: {venta['cliente_id']})\n")
                 f.write("Items:\n")
 
-                for nombre, precio, cantidad, categoria in venta["items"]:
+                for item in venta["items"]:
+                    nombre = item["nombre"]
+                    precio = item["precio"]
+                    cantidad = item["cantidad"]
+                    categoria = item["categoria"]
                     f.write(f"{categoria} - {nombre} x{cantidad} @ S/{precio} = S/{precio*cantidad:.2f}\n")
 
                 f.write(f"Subtotal: S/{venta['subtotal']:.2f}\n")
@@ -125,4 +129,4 @@ class TiendaGestorDatabase:
                 f.write("-" * 50 + "\n\n")
 
         except Exception as e:
-            print(f"❌ Error: {e}")
+            print(f"❌ Error guardar_venta_archivo: {e}")

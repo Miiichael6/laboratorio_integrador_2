@@ -29,7 +29,7 @@ def main():
         )
 
     while True:
-        print("SISTEMA DE GESTIÓN Electronicos")
+        print("📀 Perú Bytes - Sistema de gestión de Electronicos 💻🖥️⌨️🖱️")
         print("="*60)
         print("\n¿QUIÉN ERES?")
         print("="*60)

@@ -10,6 +10,7 @@ def menu_gestor_productos(elect: ElectronicosGestion):
         print("2. Buscar Producto")
         print("3. Actualizar Precio de Producto")
         print("4. Agregar Nuevo Producto")
+        print("5. Agregar más stock a un Producto") # agregado
         print("0. Cambiar de Rol")
         print("="*50)
 
@@ -24,10 +25,10 @@ def menu_gestor_productos(elect: ElectronicosGestion):
                 producto = elect.buscar_producto(nombre)
                 if producto:
                     print(f"\n✓ Producto encontrado:")
-                    print(f"  Nombre: {producto[1]}")
-                    print(f"  Precio: S/{producto[2]:.2f}")
-                    print(f"  Stock: {producto[3]}")
-                    print(f"  Categoría: {producto[4]}")
+                    print(f"  Nombre: {producto['nombre']}")
+                    print(f"  Precio: S/{producto['precio']:.2f}")
+                    print(f"  Stock: {producto['stock']}")
+                    print(f"  Categoría: {producto['categoria']}")
                 else:
                     print(f"❌ Producto '{nombre}' no encontrado")
 
@@ -60,6 +61,22 @@ def menu_gestor_productos(elect: ElectronicosGestion):
                         elect.agregar_nuevo_producto(nombre, precio, stock, categoria)
                     else:
                         print("❌ Datos inválidos")
+                except ValueError:
+                    print("❌ Datos inválidos")
+
+            elif opcion == "5":
+                print("\n" + "="*50)
+                print("➕ AGREGAR STOCK A UN PRODUCTO")
+                print("="*50)
+                elect.mostrar_catalogo()
+                try:
+                    nombre = input("Nombre del producto: ").strip()
+                    stock = int(input("Stock a agregar: "))
+
+                    if stock >= 1:
+                        elect.agregar_stock_producto(nombre, stock)
+                    else:
+                        print("❌ Stock inválido")
                 except ValueError:
                     print("❌ Datos inválidos")
 
