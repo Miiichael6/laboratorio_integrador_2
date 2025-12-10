@@ -31,7 +31,7 @@ class TiendaGestionGraficosYReportes:
             plt.grid(True, alpha=0.3)
             plt.tight_layout()
 
-            plt.show()  # ← la ventana aparece aquí
+            plt.show()
 
             plt.savefig('tienda_electronicos/reportes/ventas_diarias.png')
             plt.close()
@@ -64,7 +64,10 @@ class TiendaGestionGraficosYReportes:
             plt.title('Productos Más Vendidos', fontsize=14, fontweight='bold')
             plt.xlabel('Cantidad Vendida')
             plt.tight_layout()
-            plt.savefig('reportes/productos_vendidos.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/productos_vendidos.png')
             plt.close()
             print("✓ Gráfico de productos generado\n")
 
@@ -94,7 +97,10 @@ class TiendaGestionGraficosYReportes:
             plt.pie(ingresos, labels=categorias, autopct='%1.1f%%', startangle=90)
             plt.title('Ingresos por Categoría', fontsize=14, fontweight='bold')
             plt.tight_layout()
-            plt.savefig('reportes/categorias.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/categorias.png')
             plt.close()
             print("✓ Gráfico de categorías generado\n")
 
@@ -125,6 +131,9 @@ class TiendaGestionGraficosYReportes:
             plt.ylabel('Número de Compras')
             plt.xticks(rotation=45)
             plt.tight_layout()
+
+            plt.show()
+
             plt.savefig('tienda_electronicos/reportes/clientes.png')
             plt.close()
             print("✓ Gráfico de clientes generado\n")
@@ -144,7 +153,10 @@ class TiendaGestionGraficosYReportes:
             plt.xlabel('Precio (S/)')
             plt.ylabel('Cantidad de Productos')
             plt.tight_layout()
-            plt.savefig('reportes/precios.png')
+
+            plt.show()
+
+            plt.savefig('tienda_electronicos/reportes/precios.png')
             plt.close()
             print("✓ Gráfico de precios generado\n")
 

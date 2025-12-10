@@ -4,28 +4,7 @@ if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
     
 class TiendaGestionProductos:
-    def mostrar_catalogo(self: "ElectronicosGestion"):
-        """Muestra todos los productos por categoría."""
-        print("\n" + "="*60)
-        print("CATÁLOGO DE SERVICIOS Y PRODUCTOS")
-        print("="*60)
-
-        productos = self.productos_repository.find_all()
-
-        categorias = {}
-        for producto in productos:
-            if producto['categoria'] not in categorias:
-                categorias[producto['categoria']] = []
-            categorias[producto['categoria']].append((producto['nombre'], producto['precio'], producto['stock']))
-
-        for categoria, items in categorias.items():
-            print(f"\n📋 {categoria.upper()}")
-            print("-" * 40)
-            for nombre, precio, stock in items:
-                estado = "✓ Disponible" if stock > 0 else "✗ Agotado"
-                print(f"• {nombre:<25} S/{precio:>6.2f} | Stock: {stock:>3} {estado}")
-        print(f"\n")
-    
+    # REGION DE OPCIONES
     def opcion_buscar_producto(self: "ElectronicosGestion"): 
         nombre = input("Nombre del producto a buscar: ").strip()
         producto = self.buscar_producto(nombre)
@@ -84,6 +63,30 @@ class TiendaGestionProductos:
                 print("❌ Stock inválido")
         except ValueError:
             print("❌ Datos inválidos")
+
+
+    # REGION DE FUNCIONES VITALES
+    def mostrar_catalogo(self: "ElectronicosGestion"):
+        """Muestra todos los productos por categoría."""
+        print("\n" + "="*60)
+        print("CATÁLOGO DE SERVICIOS Y PRODUCTOS")
+        print("="*60)
+
+        productos = self.productos_repository.find_all()
+
+        categorias = {}
+        for producto in productos:
+            if producto['categoria'] not in categorias:
+                categorias[producto['categoria'].upper()] = []
+            categorias[producto['categoria'].upper()].append((producto['nombre'], producto['precio'], producto['stock']))
+
+        for categoria, items in categorias.items():
+            print(f"\n📋 {categoria.upper()}")
+            print("-" * 40)
+            for nombre, precio, stock in items:
+                estado = "✓ Disponible" if stock > 0 else "✗ Agotado"
+                print(f"• {nombre:<25} S/{precio:>6.2f} | Stock: {stock:>3} {estado}")
+        print(f"\n")
         
 
     def buscar_producto(self: "ElectronicosGestion", nombre: str) -> dict:
