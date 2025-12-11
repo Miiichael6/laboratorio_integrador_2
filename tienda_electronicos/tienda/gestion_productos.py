@@ -153,23 +153,3 @@ class TiendaGestionProductos:
         print(f"   Stock: {stock}")
         print(f"   Categoría: {categoria}")
         return True
-
-    def cargar_productos(self: "ElectronicosGestion", ruta_csv: str = "tienda_electronicos/carga/productos.csv"):
-        """Carga productos desde un CSV al catálogo, evitando duplicados y actualizando stock y precio."""
-        if not os.path.exists(ruta_csv):
-            print(f"❌ No se encontró el archivo CSV: {ruta_csv}")
-            return
-
-        df = pd.read_csv(ruta_csv)
-
-        df['nombre'] = df['nombre'].astype(str).str.strip()
-        df['categoria'] = df.get('categoria', 'General').astype(str).str.strip()
-        df['precio'] = pd.to_numeric(df['precio'], errors='coerce')
-        df['stock'] = pd.to_numeric(df['stock'], errors='coerce')
-
-        df_validos = df[(df['nombre'] != "") & (df['precio'] > 0) & (df['stock'] >= 0)]
-
-        for _, fila in df_validos.iterrows():
-            self.agregar_nuevo_producto(fila['nombre'], fila['precio'], fila['stock'], fila['categoria'])
-
-        print(f"\n✅ Productos cargados correctamente")
