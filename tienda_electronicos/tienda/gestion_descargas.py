@@ -33,11 +33,13 @@ class TiendaGestionDescargas:
             productos = pd.read_csv("tienda_electronicos/download/productos.csv").head()
             ventas = pd.read_csv("tienda_electronicos/download/ventas.csv").head()
 
-            print("\n========================== Productos ==========================")
-            print(tabulate(productos, headers="keys", tablefmt="fancy_grid", showindex=False))
+            if not productos.empty:
+                print("\n========================== Productos ==========================")
+                print(tabulate(productos, headers="keys", tablefmt="fancy_grid", showindex=False))
 
-            print("\n========================== Ventas ===========================")
-            print(tabulate(ventas, headers="keys", tablefmt="fancy_grid", showindex=False))
+            if not ventas.empty:
+                print("\n========================== Ventas ===========================")
+                print(tabulate(ventas, headers="keys", tablefmt="fancy_grid", showindex=False))
 
             print("\n" + "-"*70)
 
