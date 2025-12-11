@@ -16,10 +16,13 @@ def menu_descargas(elect: ElectronicosGestion):
 
             if opcion == "1":
                 elect.descargar_catalogo_csv()
+                
             elif opcion == "2":
                 elect.descargar_ventas_csv()
+
             elif opcion == "3":
                 elect.mostrar_contenido_reportes()
+
             elif opcion == "0":
                 break
             else:

@@ -29,12 +29,7 @@ def menu_administrador_ventas(elect: ElectronicosGestion):
                 elect.productos_stock_bajo()
 
             elif opcion == "5":
-                nombre = input("Nombre del cliente: ").strip()
-                tipo = input("Tipo (regular/premium): ").strip().lower()
-                if tipo in ["regular", "premium"]:
-                    elect.agregar_cliente(nombre, tipo)
-                else:
-                    print("❌ Tipo debe ser 'regular' o 'premium'")
+                elect.opcion_agregar_cliente()
 
             elif opcion == "0":
                 break

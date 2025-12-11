@@ -187,6 +187,14 @@ class TiendaGestionCompras:
         print("="*60)
         print("¡Gracias por confiar en nosotros! \n")
 
+    def opcion_agregar_cliente(self: "ElectronicosGestion"): 
+        nombre = input("Nombre del cliente: ").strip()
+        tipo = input("Tipo (regular/premium): ").strip().lower()
+        if tipo in ["regular", "premium"]:
+            self.agregar_cliente(nombre, tipo)
+        else:
+            print("❌ Tipo debe ser 'regular' o 'premium'")
+
     def agregar_cliente(self: "ElectronicosGestion", nombre: str, tipo: str):
         """Agrega un nuevo cliente."""
         # Normalizar nombre (capitalizar correctamente)
