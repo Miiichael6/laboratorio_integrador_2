@@ -4,6 +4,7 @@
 from typing import TYPE_CHECKING
 from tabulate import tabulate
 import pandas as pd
+import os
 
 if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
