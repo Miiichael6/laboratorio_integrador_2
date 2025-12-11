@@ -3,9 +3,10 @@ id,nombre,precio,stock,categoria
 2,Mouse Inalámbrico,45.0,80,Accesorios
 3,Monitor 24 FHD,520.0,40,Pantallas
 4,Teclado Mecánico RGB,260.0,35,Accesorios
-5,Audífonos Bluetooth,180.0,10,Audio
-6,Router WiFi 6,310.0,28,Redes
-7,SSD 1TB NVMe,420.0,42,Almacenamiento
+5,Audífonos Bluetooth,180.0,50,Audio
+6,Router WiFi 6,350.0,30,Redes
+7,SSD 1TB NVMe,420.0,45,Almacenamiento
 8,Impresora Multifuncional,680.0,20,Periféricos
 9,Cargador Rápido 30W,70.0,60,Accesorios
 10,Webcam Full HD,110.0,25,Periféricos
+11,SSD 2TB NVMe,360.0,35,Almacenamiento
