@@ -56,8 +56,6 @@ class TiendaGestorDatabase:
 
     def insertar_datos_iniciales(self: "ElectronicosGestion"):
         """Inserta datos de prueba."""
-        # productos = self.productos_repository.find_all()
-        # clientes = self.clientes_repository.find_all()
         producto_cantidad = self.db.select("SELECT COUNT(*) AS total FROM productos")[0]["total"]
         clientes_cantidad = self.db.select("SELECT COUNT(*) AS total FROM clientes")[0]["total"]
 
