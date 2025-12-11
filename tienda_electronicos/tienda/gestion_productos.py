@@ -67,7 +67,7 @@ class TiendaGestionProductos:
             print("❌ Datos inválidos")
 
 
-    # REGION DE FUNCIONES VITALES
+    # REGION DE FUNCIONES VITALES 
     def mostrar_catalogo(self: "ElectronicosGestion"):
         """Muestra todos los productos por categoría."""
         print("\n" + "="*60)
