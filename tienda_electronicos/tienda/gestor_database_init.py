@@ -1,3 +1,4 @@
+from IPython.core.hooks import clipboard_get
 import datetime
 from typing import TYPE_CHECKING
 if TYPE_CHECKING:
@@ -57,8 +58,8 @@ class TiendaGestorDatabase:
         """Inserta datos de prueba."""
         # productos = self.productos_repository.find_all()
         # clientes = self.clientes_repository.find_all()
-        producto_cantidad = self.db.select_one("SELECT COUNT(*) FROM productos")
-        clientes_cantidad = self.db.select_one("SELECT COUNT(*) FROM clientes")
+        producto_cantidad = self.db.select("SELECT COUNT(*) AS total FROM productos")[0]["total"]
+        clientes_cantidad = self.db.select("SELECT COUNT(*) AS total FROM clientes")[0]["total"]
 
         if producto_cantidad == 0:
             for nombre, precio, stock, categoria in self.catalogo:
