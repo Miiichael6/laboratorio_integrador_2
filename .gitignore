@@ -3,4 +3,4 @@ __pycache__/
 *.pyo
 *.db
 tienda_electronicos/datos/*.txt
-
+tienda_electronicos/reportes/*.png

@@ -2,7 +2,9 @@
 # DESCARGAS (DESCARGAS)
 # ========================================================================
 from typing import TYPE_CHECKING
+from tabulate import tabulate
 import pandas as pd
+
 if TYPE_CHECKING:
     from .tienda_electronicos_gestor import ElectronicosGestion
 
@@ -28,10 +30,16 @@ class TiendaGestionDescargas:
 
     def mostrar_contenido_reportes(self: "ElectronicosGestion"):
         try:
-            print("\n=== Productos ===")
-            print(pd.read_csv("tienda_electronicos/download/productos.csv").head())
+            productos = pd.read_csv("tienda_electronicos/download/productos.csv").head()
+            ventas = pd.read_csv("tienda_electronicos/download/ventas.csv").head()
 
-            print("\n=== Ventas ===")
-            print(pd.read_csv("tienda_electronicos/download/ventas.csv").head())
+            print("\n========================== Productos ==========================")
+            print(tabulate(productos, headers="keys", tablefmt="fancy_grid", showindex=False))
+
+            print("\n========================== Ventas ===========================")
+            print(tabulate(ventas, headers="keys", tablefmt="fancy_grid", showindex=False))
+
+            print("\n" + "-"*70)
+
         except Exception as e:
             print(f"❌ Error mostrar_contenido_reportes: {e}")

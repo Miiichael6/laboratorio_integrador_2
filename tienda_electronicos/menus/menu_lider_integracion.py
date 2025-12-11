@@ -1,4 +1,5 @@
 from tienda_electronicos.tienda import ElectronicosGestion
+from .menu_descargas import menu_descargas
 from .menu_graficos import menu_graficos
 
 def menu_lider_integracion(elect: ElectronicosGestion):
@@ -23,8 +24,8 @@ def menu_lider_integracion(elect: ElectronicosGestion):
         print("9. Productos Más Vendidos")
         print("10. Ventas por Cliente")
         print("11. Stock Bajo")
-        print("12. Ver Historial de Compras")
-        print("\n0. Cambiar de Rol")
+        print("12. Graficos")
+        print("13. Descargas")
         print("="*50)
 
         try:
@@ -68,6 +69,9 @@ def menu_lider_integracion(elect: ElectronicosGestion):
 
             elif opcion == "12":
                 menu_graficos(elect)
+            
+            elif opcion == "13":
+                menu_descargas(elect)
                 
             elif opcion == "0":
                 break

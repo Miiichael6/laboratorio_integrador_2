@@ -33,8 +33,8 @@ class TiendaGestionGraficosYReportes:
 
             plt.show()
 
-            plt.savefig('tienda_electronicos/reportes/ventas_diarias.png')
-            plt.close()
+            # plt.savefig('tienda_electronicos/reportes/ventas_diarias.png')
+            # plt.close()
 
             print("✓ Gráfico de ventas generado y mostrado\n")
 
@@ -67,8 +67,8 @@ class TiendaGestionGraficosYReportes:
 
             plt.show()
 
-            plt.savefig('tienda_electronicos/reportes/productos_vendidos.png')
-            plt.close()
+            # plt.savefig('tienda_electronicos/reportes/productos_vendidos.png')
+            # plt.close()
             print("✓ Gráfico de productos generado\n")
 
         except Exception as e:
@@ -100,8 +100,8 @@ class TiendaGestionGraficosYReportes:
 
             plt.show()
 
-            plt.savefig('tienda_electronicos/reportes/categorias.png')
-            plt.close()
+            # plt.savefig('tienda_electronicos/reportes/categorias.png')
+            # plt.close()
             print("✓ Gráfico de categorías generado\n")
 
         except Exception as e:
@@ -134,8 +134,8 @@ class TiendaGestionGraficosYReportes:
 
             plt.show()
 
-            plt.savefig('tienda_electronicos/reportes/clientes.png')
-            plt.close()
+            # plt.savefig('tienda_electronicos/reportes/clientes.png')
+            # plt.close()
             print("✓ Gráfico de clientes generado\n")
 
         except Exception as e:
@@ -156,8 +156,8 @@ class TiendaGestionGraficosYReportes:
 
             plt.show()
 
-            plt.savefig('tienda_electronicos/reportes/precios.png')
-            plt.close()
+            # plt.savefig('tienda_electronicos/reportes/precios.png')
+            # plt.close()
             print("✓ Gráfico de precios generado\n")
 
         except Exception as e:
