@@ -165,7 +165,7 @@ class TiendaGestionCompras:
     def mostrar_ticket_venta(self: "ElectronicosGestion", venta: dict):
         """Muestra el ticket de venta."""
         print("\n" + "="*60)
-        print(" Electronicos Tecsup Plus - TICKET DE VENTA")
+        print(" Electronicos 📀 Peru Bytes - TICKET DE VENTA")
         print("="*60)
         print(f"Fecha: {venta['fecha'].strftime('%d/%m/%Y %H:%M:%S')}")
         print(f"Cliente: {venta['cliente']}")

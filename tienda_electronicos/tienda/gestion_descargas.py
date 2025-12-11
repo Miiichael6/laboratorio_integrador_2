@@ -29,19 +29,29 @@ class TiendaGestionDescargas:
             print(f"❌ Error descargar_ventas_csv: {e}")
 
     def mostrar_contenido_reportes(self: "ElectronicosGestion"):
-        try:
-            productos = pd.read_csv("tienda_electronicos/download/productos.csv").head()
-            ventas = pd.read_csv("tienda_electronicos/download/ventas.csv").head()
+       try:
+           def cargar(ruta):
+               if not os.path.exists(ruta) or os.path.getsize(ruta) == 0:
+                   return None
+               df = pd.read_csv(ruta)
+               return df if not df.empty else None
 
-            if not productos.empty:
-                print("\n========================== Productos ==========================")
-                print(tabulate(productos, headers="keys", tablefmt="fancy_grid", showindex=False))
+           productos = cargar("tienda_electronicos/download/productos.csv")
+           ventas = cargar("tienda_electronicos/download/ventas.csv")
 
-            if not ventas.empty:
-                print("\n========================== Ventas ===========================")
-                print(tabulate(ventas, headers="keys", tablefmt="fancy_grid", showindex=False))
+           if productos is not None:
+               print("\n========================== Productos ==========================")
+               print(tabulate(productos.head(), headers="keys", tablefmt="fancy_grid", showindex=False))
+           else:
+               print("\n⚠ No hay productos.")
 
-            print("\n" + "-"*70)
+           if ventas is not None:
+               print("\n========================== Ventas ===========================")
+               print(tabulate(ventas.head(), headers="keys", tablefmt="fancy_grid", showindex=False))
+           else:
+               print("\n⚠ No hay ventas.")
 
-        except Exception as e:
-            print(f"❌ Error mostrar_contenido_reportes: {e}")
+           print("\n" + "-"*70)
+
+       except Exception as e:
+           print(f"❌ Error mostrar_contenido_reportes: {e}")
